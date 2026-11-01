@@ -2,3 +2,4 @@
 # No external dependencies required.
 # Uses Python standard library unittest.
 
+flake8==7.5.0

@@ -1,3 +1,4 @@
+
 def calculate_grade(marks):
     if marks < 0 or marks > 100:
         return "Invalid Marks"
@@ -10,12 +11,13 @@ def calculate_grade(marks):
 
     elif marks >= 60:
         return "C"
-    
+
     elif marks >= 40:
         return "D"
 
     else:
         return "F"
+
 
 if __name__ == "__main__":
     print(calculate_grade(85))
