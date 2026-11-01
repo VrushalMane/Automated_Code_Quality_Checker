@@ -1,37 +1,47 @@
 
-name : Code Quality CI
+name: Code Quality CI
 
-on :
-  push :
-    branches :
+on:
+  push:
+    branches:
       - main
 
-  pull_request :
-    branches :
+  pull_request:
+    branches:
       - main
 
-jobs :
-  quality-check :
-    name : Code Quality and Testing
-    runs-on : ubuntu-latest
+jobs:
+  quality-check:
+    name: Code Quality and Testing
+    runs-on: ubuntu-latest
 
-    steps :
-      - name : Checkout Repository
-        uses : actions/checkout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name : Set Up Python
-        uses : actions/setup-python@v5
-        with :
-          python-version : "3.14"
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
 
-      - name : Install Dependencies
-        run : pip install -r requirements.txt
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
 
-      - name : Run Flake8 Code Quality Check
-        run : python -m flake8 app.py test_app.py
+      - name: Generate Code Quality Report
+        run: python generate_report.py
 
-      - name : Build Docker Image
-        run : docker build -t code-quality-checker .
+      - name: Run Flake8 Code Quality Check
+        run: python -m flake8 app.py test_app.py
 
-      - name : Run Automated Tests
-        run : docker run --rm code-quality-checker
+      - name: Build Docker Image
+        run: docker build -t code-quality-checker .
+
+      - name: Run Automated Tests
+        run: docker run --rm code-quality-checker
+
+      - name: Upload Code Quality Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-quality-report
+          path: code-quality-report.txt
