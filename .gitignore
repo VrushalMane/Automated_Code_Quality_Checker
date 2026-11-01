@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+flake8-report.txt
+code-quality-report.txt
+.coverage
+.coverage.*
+htmlcov/

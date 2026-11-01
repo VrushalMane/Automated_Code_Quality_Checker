@@ -1,5 +1,5 @@
-
-# No external dependencies required.
-# Uses Python standard library unittest.
-
+# Code quality checking
 flake8==7.5.0
+
+# Code coverage analysis
+coverage==7.17.0
