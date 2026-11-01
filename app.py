@@ -21,3 +21,4 @@ if __name__ == "__main__":
     print(calculate_grade(85))
     print(calculate_grade(30))
     print(calculate_grade(120))
+    print(calculate_grade(65))
