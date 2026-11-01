@@ -1,0 +1,26 @@
+
+name: Code Quality CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Build Docker Image and Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t code-quality-checker .
+
+      - name: Run Automated Tests
+        run: docker run --rm code-quality-checker
